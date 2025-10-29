@@ -34,7 +34,9 @@ cast call <DEPLOYED_CONTRACT_ADDRESS> "owner()(address)" \
 ```
 This should return the address of the owner.
 
+Update `voting-backend/.env` with the info found in `voting-backend/example.env`.
 
+In another separate Terminal window, run the folowing to initialize the server:
 ```bash
 cd voting-backend
 node index.js
@@ -42,14 +44,14 @@ node index.js
 
 ## Add candidate
 
-using anvil
+Using anvil
 ```bash
 cast send <DEPLOYED_CONTRACT_ADDRESS> "addCandidate(string)" "Alice" \
   --rpc-url http://127.0.0.1:8545 \
   --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 ```
 
-  using POST
+Using POST
 
   ```bash
   curl -X POST http://localhost:3000/candidates \
@@ -59,9 +61,9 @@ cast send <DEPLOYED_CONTRACT_ADDRESS> "addCandidate(string)" "Alice" \
     "isOwner": true
   }'
 ```
-### voting
+### Voting
 
-using anvil
+Using anvil
 
 ```bash
 cast send <DEPLOYED_CONTRACT_ADDRESS> "vote(uint256)" 1 \
@@ -70,7 +72,7 @@ cast send <DEPLOYED_CONTRACT_ADDRESS> "vote(uint256)" 1 \
 ```
 
 
-using POST
+Using POST
 ```bash
 curl -X POST http://localhost:3000/vote \
   -H "Content-Type: application/json" \
@@ -80,29 +82,30 @@ curl -X POST http://localhost:3000/vote \
   }'
 ```
 
-### get candidates
-using anvil
+### Get Candidates
+
+Using anvil
 ```bash
 cast call <CONTRACT_ADDRESS> "getCandidates()((string ,uint256 )[])" \
   --rpc-url http://127.0.0.1:8545
 
 ```
 
-using GET
+Using GET
 ```bash
 curl http://localhost:3000/candidates
 ```
 
-### get winner
+### Get Winner
 
-using Anvil
+Using Anvil
 ```bash
 cast call <DEPLOYED_CONTRACT_ADDRESS> "getWinner()(string)" \
   --rpc-url http://127.0.0.1:8545
 ```
 
 
-using POST
+Using POST
 
 ```bash
 curl http://localhost:3000/winner
