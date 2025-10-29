@@ -110,3 +110,5 @@ Using POST
 ```bash
 curl http://localhost:3000/winner
 ```
+
+**NOTE: all private keys and addresses show in this repo are defaults created by anvil, and should not be used in production environment.**
